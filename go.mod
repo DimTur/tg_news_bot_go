@@ -11,6 +11,7 @@ require (
 	github.com/go-shiori/go-readability v0.0.0-20240701094332-1070de7e32ef // indirect
 	github.com/gogs/chardet v0.0.0-20211120154057-b7413eaefb8f // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
+	github.com/sashabaranov/go-openai v1.26.3 // indirect
 	go.tomakado.io/containers v0.0.0-20240306123358-5f64d4e0f4f3 // indirect
 	golang.org/x/net v0.27.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
