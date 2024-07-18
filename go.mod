@@ -12,5 +12,6 @@ require (
 require (
 	github.com/SlyMarbo/rss v1.0.5
 	github.com/cristalhq/aconfig/aconfighcl v0.17.1
+	github.com/go-telegram-bot-api/telegram-bot-api/v5 v5.5.1
 	github.com/jmoiron/sqlx v1.4.0
 )
