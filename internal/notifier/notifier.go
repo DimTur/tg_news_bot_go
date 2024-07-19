@@ -52,7 +52,7 @@ func New(
 	}
 }
 
-// need to transaction wrap
+// needs to transaction wrap
 func (n *Notifier) SelectAndSendArticle(ctx context.Context) error {
 	topOneArticles, err := n.articles.AllNotPosted(ctx, time.Now().Add(-n.lookupTimeWindow), 1)
 	if err != nil {
