@@ -18,7 +18,7 @@ type ArticleStorage interface {
 }
 
 type SourcesProvider interface {
-	Sourses(ctx context.Context) ([]model.Source, error)
+	Sources(ctx context.Context) ([]model.Source, error)
 }
 
 type Source interface {
@@ -37,13 +37,13 @@ type Fetcher struct {
 
 func New(
 	articleStorage ArticleStorage,
-	sourceProvider SourcesProvider,
+	sourcesProvider SourcesProvider,
 	fetchInterval time.Duration,
 	filterKeywords []string,
 ) *Fetcher {
 	return &Fetcher{
 		articles:       articleStorage,
-		sources:        sourceProvider,
+		sources:        sourcesProvider,
 		fetchInterval:  fetchInterval,
 		filterKeywords: filterKeywords,
 	}
@@ -70,7 +70,7 @@ func (f *Fetcher) Start(ctx context.Context) error {
 }
 
 func (f *Fetcher) Fetch(ctx context.Context) error {
-	sources, err := f.sources.Sourses(ctx)
+	sources, err := f.sources.Sources(ctx)
 	if err != nil {
 		return err
 	}
