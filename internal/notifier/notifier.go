@@ -22,7 +22,7 @@ type ArticleProvider interface {
 }
 
 type Summarizer interface {
-	Summarizer(ctx context.Context, text string) (string, error)
+	Summarize(text string) (string, error)
 }
 
 type Notifier struct {
@@ -65,7 +65,7 @@ func (n *Notifier) SelectAndSendArticle(ctx context.Context) error {
 
 	article := topOneArticles[0]
 
-	summary, err := n.extractSummary(ctx, article)
+	summary, err := n.extractSummary(article)
 	if err != nil {
 		return fmt.Errorf("failed to get article: %w", err)
 	}
@@ -78,7 +78,7 @@ func (n *Notifier) SelectAndSendArticle(ctx context.Context) error {
 }
 
 // needs to retry and backoff
-func (n *Notifier) extractSummary(ctx context.Context, article model.Article) (string, error) {
+func (n *Notifier) extractSummary(article model.Article) (string, error) {
 	var r io.Reader
 
 	if article.Summary != "" {
@@ -98,7 +98,7 @@ func (n *Notifier) extractSummary(ctx context.Context, article model.Article) (s
 		return "", fmt.Errorf("failed to get article: %w", err)
 	}
 
-	summary, err := n.summarizer.Summarizer(ctx, cleanText(doc.TextContent))
+	summary, err := n.summarizer.Summarize(cleanText(doc.TextContent))
 	if err != nil {
 		return "", fmt.Errorf("failed to get summary: %w", err)
 	}
